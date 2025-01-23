@@ -26,7 +26,10 @@ public class StripePaymentGatewayImpl implements IPaymentGateWay {
                                            .setPrice(price.getId())
                                            .setQuantity(1L)
                                            .build()
-                           )
+                           ).setAfterCompletion(PaymentLinkCreateParams.AfterCompletion.builder().setType(
+
+                                   PaymentLinkCreateParams.AfterCompletion.Type.REDIRECT
+                           ).setRedirect(PaymentLinkCreateParams.AfterCompletion.Redirect.builder().setUrl("https://github.com/krishik1").build()).build())
                            .build();
 
            PaymentLink paymentLink = PaymentLink.create(params);
